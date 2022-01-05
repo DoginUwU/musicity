@@ -1,8 +1,8 @@
 import React, { createRef, useEffect, useState } from 'react';
-import { RiPlayFill, RiSkipBackFill, RiSkipForwardFill } from 'react-icons/ri';
 import { usePlayer } from '../../hooks/usePlayer';
 import { secondsToMMSS } from '../../utils/format';
 import AudioPlayer from '../AudioPlayer';
+import ControlsPlayer from '../ControlsPlayer';
 
 import {
   Container,
@@ -17,7 +17,8 @@ interface IPlayerTimes {
 }
 
 const Player: React.FC = () => {
-  const { currentMusic, state } = usePlayer()
+  const { currentMusic, state, setState, queue, nextMusicYoutubePlaylist } =
+    usePlayer()
   const AudioRef = createRef<HTMLAudioElement>();
   const [times, setTimes] = useState<IPlayerTimes>(
     {} as IPlayerTimes
@@ -34,6 +35,16 @@ const Player: React.FC = () => {
             currentTime: audioCurrentTime,
             duration: audioDuration,
           })
+
+          if (audioCurrentTime === audioDuration) { 
+            if (!queue.length) {
+              setState('stopped')
+              AudioRef.current.currentTime = 0
+              AudioRef.current.src = ''
+            } else {
+              nextMusicYoutubePlaylist();
+            }
+          }
         }
       },
       1000
@@ -48,13 +59,23 @@ const Player: React.FC = () => {
     AudioRef.current.currentTime = Number(e.target.value);
   }
 
+  const handlePlayPause = () => { 
+    if (!AudioRef.current) return
+
+    if (state === 'playing') {
+      AudioRef.current.pause();
+      setState('paused');
+    } else {
+      AudioRef.current.play();
+      setState('playing');
+    }
+  }
+
     return (
       <Container disabled={state === 'stopped'}>
         <AudioPlayer ref={AudioRef} />
         <PlayerControls>
-          <RiSkipBackFill />
-          <RiPlayFill />
-          <RiSkipForwardFill />
+          <ControlsPlayer onPlayPause={handlePlayPause} />
         </PlayerControls>
         <PlayerInfo>
           <img src={currentMusic?.snippet.thumbnails.medium.url} alt="Player" />

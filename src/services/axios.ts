@@ -17,7 +17,7 @@ const _initialize = () => {
             "X-Requested-With, content-type, Authorization",
         },
         params: {
-            key: "AIzaSyBwIY8XJmIvPDPmFvbL_v9NCeqFuRLDkeI",
+            key: "",
         },
     });
 }

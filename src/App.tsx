@@ -12,14 +12,14 @@ import { PlayerProvider } from './hooks/usePlayer';
 export function App() {
   return (
     <BrowserRouter>
-      <MusicProvider>
-        <PlayerProvider>
-          <Router />
-          <GlobalStyle />
-          <Menu />
-          <Player />
-        </PlayerProvider>
+        <MusicProvider>
+          <PlayerProvider>
+            <Router />
+            <GlobalStyle />
+            <Menu />
+            <Player />
+          </PlayerProvider>
         </MusicProvider>
     </BrowserRouter>
-  );
+  )
 }

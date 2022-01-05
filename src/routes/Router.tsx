@@ -5,8 +5,8 @@ import Search from '../views/Search';
 
 const Router: React.FC = function () {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
+    <Routes location="/">
+      <Route index element={<Home />} />
       <Route path="/search/:name" element={<Search />} />
     </Routes>
   );

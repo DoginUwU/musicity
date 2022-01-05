@@ -87,14 +87,17 @@ const PlayerProgress = styled.div`
   flex: 1;
 
   input[type='range'] {
+    position: relative;
     width: 100%;
     height: 0.4em;
 
     -webkit-appearance: none;
     appearance: none;
     background-color: #23242a;
-      border-radius: 7px;
-      overflow: hidden;
+    border-radius: 7px;
+    overflow: hidden;
+
+    cursor: pointer;
   }
 
   input[type='range']::-webkit-slider-thumb {

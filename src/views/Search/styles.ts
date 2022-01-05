@@ -40,8 +40,25 @@ const MusicContainer = styled.div`
     width: 6em;
     height: 6em;
     border-radius: 10%;
-    outline: 0px solid rgba(255, 4, 4, 0.5);
     object-fit: cover;
+  }
+
+  .image {
+    position: relative;
+
+    div {
+      position: absolute;
+      bottom: -5px;
+      right: -15px;
+      padding: 0.1em;
+      background-color: #fff;
+      border-radius: 50%;
+      font-size: 1.5em;
+      color: #3d50fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   & > * {
@@ -63,20 +80,8 @@ const MusicContainer = styled.div`
 
   &:hover {
     cursor: pointer;
-
-    p {
-      opacity: 0;
-    }
-
-    h2 {
-      transform: translateY(1em);
-    }
-
-    img {
-      outline: 10em solid rgba(255, 4, 4, 0.5);
-      border-radius: 0%;
-    }
+    background-color: #191a1f;
   }
-`;
+`
 
 export { Container, MusicsContainer, MusicContainer };
